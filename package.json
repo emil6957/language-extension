@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && move out/_next out/next && robocopy ./extension ./out /E",
+    "build-css": "tailwindcss -i ./app/globals.css -o ./extension/output.css --watch",
     "start": "next start",
     "lint": "next lint"
   },

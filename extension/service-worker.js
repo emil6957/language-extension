@@ -1,21 +1,16 @@
-import "./sw-omnibox.js";
-import "./sw-tips.js";
-
 chrome.runtime.onInstalled.addListener(async () => {
     chrome.contextMenus.create({
-        id: "1",
+        id: "openPopup",
         title: "test",
         type: "normal",
         contexts: ["selection"]
     });
 });
 
-chrome.contextMenus.onClicked.addListener(
-    function(info, tab) {
-        console.log(info.selectionText)
-        console.log("INFO BELOW");
-        console.log(info);
-        console.log("TAB BELOW");
-        console.log(tab);
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+        chrome.runtime.sendMessage("show-popup", (response) => {
+            console.log("REPONSE");
+            console.log(response);
+        });
     }
-)
+);
